@@ -3,17 +3,17 @@ import React from 'react';
 // import './App.css';
 
 //how to export component 
-export const Box = (props)=> {
-  return (
-    <div> Helloooooooooo, USER {props.name} </div>
-  );
-}
+// export const Box = (props)=> {
+//   return (
+//     <div> Helloooooooooo, USER {props.name} </div>
+//   );
+// }
 
-export const Box2= (props)=> {
-  return(
-    <div> WHATSUPPPPPPP EVENTS {props.text}</div>
-  )
-}
+// export const Box2= (props)=> {
+//   return(
+//     <div> WHATSUPPPPPPP EVENTS {props.text}</div>
+//   )
+// }
 
 const EventForm= ()=> {
   const [name, setName] = React.useState("");
@@ -21,58 +21,48 @@ const EventForm= ()=> {
   const [eventDate, setEventDate] = React.useState("2021-03-17");
 
   return(
-    <form
+    <form 
         onSubmit={(e) => {
           e.preventDefault();
-          console.log({ name, description, eventDate});
-        }}
+          console.log({ name, description, eventDate});}}
       >
         <div>
-          <label>
+          <label style= {{padding:"20px",justifyContent: 'center'} }>
             Event Name:
             <input
               name="eventName"
               value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-              }}
+              onChange={(e) => {setName(e.target.value)}}
             />
           </label>
         </div>
 
-        <div>
+        <div style= {{padding:"20px", justifyContent: 'center'}}>
           <label>
             Event Description:
             <textarea
               name="description"
               value={description}
-              onChange={(e) => {
-                setDescription(e.target.value);
-              }}
+              onChange={(e) => {setDescription(e.target.value);}}
             />
           </label>
         </div>
 
-        <div>
+        <div style= {{padding: "20px"}}>
           <label>
             Event Date:
             <input
               type="date"
               value={eventDate}
-              onChange={(e) => {
-                setEventDate(e.target.value);
-              }}
+              onChange={(e) => {setEventDate(e.target.value);}}
             />
           </label>
         </div>
 
-        <div>
+        <div style= {{padding: "20px"}}>
           <input type="submit" value="Submit" />
         </div>
       </form>
-
-
-
 
   );
 };
@@ -100,10 +90,6 @@ function App() {
       <p className="App-intro">{apiResponse}</p>
       <h2> Add Event </h2>
       <EventForm/>
-      <Box className="Pink" name= "Brit"/>
-      <Box2 text="ok"/>
-      <p> dfdfdfd</p>
-      <div> component here </div>
     </>
   );
 };

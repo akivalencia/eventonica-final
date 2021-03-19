@@ -1,6 +1,10 @@
 import React from 'react';
+import EventForm from './Event.js'
+import UserForm from './User.js'
+import ShowEvent from './ShowEvent.js'
+
 // import logo from './logo.svg';
-// import './App.css';
+import './App.css';
 
 //how to export component 
 // export const Box = (props)=> {
@@ -11,73 +15,14 @@ import React from 'react';
 
 // export const Box2= (props)=> {
 //   return(
-//     <div> WHATSUPPPPPPP EVENTS {props.text}</div>
-//   )
-// }
-
-const EventForm= ()=> {
-  const [name, setName] = React.useState("");
-  const [description, setDescription] = React.useState("");
-  const [eventDate, setEventDate] = React.useState("2021-03-17");
-
-  return(
-    <form 
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log({ name, description, eventDate});}}
-      >
-        <div>
-          <label style= {{padding:"20px",justifyContent: 'center'} }>
-            Event Name:
-            <input
-              name="eventName"
-              value={name}
-              onChange={(e) => {setName(e.target.value)}}
-            />
-          </label>
-        </div>
-
-        <div style= {{padding:"20px", justifyContent: 'center'}}>
-          <label>
-            Event Description:
-            <textarea
-              name="description"
-              value={description}
-              onChange={(e) => {setDescription(e.target.value);}}
-            />
-          </label>
-        </div>
-
-        <div style= {{padding: "20px"}}>
-          <label>
-            Event Date:
-            <input
-              type="date"
-              value={eventDate}
-              onChange={(e) => {setEventDate(e.target.value);}}
-            />
-          </label>
-        </div>
-
-        <div style= {{padding: "20px"}}>
-          <input type="submit" value="Submit" />
-        </div>
-      </form>
-
-  );
-};
-
-
-
-
-
+//     <div> WHATSUPPPPPPP EVENTS {props.text}</div
 
 
 function App() {
   const [apiResponse, setAPIResponse] = React.useState("");
     function callAPI() {
         fetch("http://localhost:9000/testAPI")
-            .then(res => res.text())
+            .then(res => res.json())
             .then(res => setAPIResponse(res))
             .catch(err => err);
 };
@@ -87,9 +32,10 @@ function App() {
 
   return (
     <>
-      <p className="App-intro">{apiResponse}</p>
-      <h2> Add Event </h2>
+      <p className="App-intro">hi</p>
       <EventForm/>
+      <UserForm/>
+      {(apiResponse.event|| []).map( event => <ShowEvent {...event}/>) }
     </>
   );
 };

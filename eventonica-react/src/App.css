@@ -43,7 +43,16 @@
 }
 
 label{
+  width: 240px;
   display: inline-block;
-  float: left;
-  clear: left;
+  padding: 10px;
+}
+
+input{
+  padding-left: 100px;
+}
+
+div{
+  background-color: pink;
+  padding: 10px;
 }
